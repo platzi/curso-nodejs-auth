@@ -31,6 +31,8 @@
     "faker": "^5.5.3",
     "joi": "^17.4.2",
     "mysql2": "^2.3.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.6.5",
