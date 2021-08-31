@@ -30,6 +30,7 @@
     "express": "^4.17.1",
     "faker": "^5.5.3",
     "joi": "^17.4.2",
+    "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
