@@ -1,23 +1,27 @@
 const express = require('express');
 
-const productsRouter = require('./products.router');
-const categoriesRouter = require('./categories.router');
 const usersRouter = require('./users.router');
-const orderRouter = require('./orders.router');
-const customersRouter = require('./customers.router');
 const authRouter = require('./auth.router');
-const profileRouter = require('./profile.router');
+const businessRouter = require('./business.router');
+const constructionSiteRouter = require('./constructionSite.router');
+const contractorRouter = require('./contractor.router');
+const residentRouter = require('./resident.router');
+const citiesRouter = require('./cities.router');
+const JobsRouter = require('./jobs.router');
+
+
 
 function routerApi(app) {
   const router = express.Router();
   app.use('/api/v1', router);
-  router.use('/products', productsRouter);
-  router.use('/categories', categoriesRouter);
   router.use('/users', usersRouter);
-  router.use('/orders', orderRouter);
-  router.use('/customers', customersRouter);
   router.use('/auth', authRouter);
-  router.use('/profile', profileRouter);
+  router.use('/business', businessRouter);
+  router.use('/constructionSite', constructionSiteRouter);
+  router.use('/resident', residentRouter);
+  router.use('/contractor', contractorRouter);
+  router.use('/cities', citiesRouter);
+  router.use('/jobs', JobsRouter);
 }
 
 module.exports = routerApi;

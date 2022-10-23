@@ -1,8 +1,8 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const USER_TABLE = 'users';
+const CONSTRUCTION_SITE_TABLE = 'construction_site';
 
-const UserSchema = {
+const ConstructionSiteSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -13,24 +13,21 @@ const UserSchema = {
     allowNull: false,
     type: DataTypes.STRING,
   },
-  email: {
+  location: {
     allowNull: false,
     type: DataTypes.STRING,
-    unique: true,
   },
-  password: {
+  id_business: {
     allowNull: false,
-    type: DataTypes.STRING
+    type: DataTypes.INTEGER
   },
-  recoveryToken: {
-    field: 'recovery_token',
-    allowNull: true,
-    type: DataTypes.STRING
-  },
-  role: {
+  id_resident: {
     allowNull: false,
-    type: DataTypes.STRING,
-    defaultValue: 'customer'
+    type: DataTypes.INTEGER
+  },
+  id_user: {
+    allowNull: false,
+    type: DataTypes.INTEGER
   },
   createdAt: {
     allowNull: false,
@@ -40,23 +37,16 @@ const UserSchema = {
   }
 }
 
-class User extends Model {
-  static associate(models) {
-    this.hasOne(models.Customer, {
-      as: 'customer',
-      foreignKey: 'userId'
-    });
-  }
-
+class ConstructionSite extends Model {
   static config(sequelize) {
     return {
       sequelize,
-      tableName: USER_TABLE,
-      modelName: 'User',
+      tableName: CONSTRUCTION_SITE_TABLE,
+      modelName: 'ConstructionSite',
       timestamps: false
     }
   }
 }
 
 
-module.exports = { USER_TABLE, UserSchema, User }
+module.exports = { CONSTRUCTION_SITE_TABLE, ConstructionSiteSchema, ConstructionSite }

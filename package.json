@@ -1,7 +1,7 @@
 {
-  "name": "my-store",
+  "name": "Aviato",
   "version": "1.0.0",
-  "description": "",
+  "description": "Control de nominas",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
@@ -9,6 +9,7 @@
     "lint": "eslint",
     "migrations:generate": "sequelize-cli migration:generate --name",
     "migrations:run": "sequelize-cli db:migrate",
+    "migrations:update": "sequelize-cli db:migrate:schema:timestamps:add",
     "migrations:revert": "sequelize-cli db:migrate:undo",
     "migrations:delete": "sequelize-cli db:migrate:undo:all"
   },

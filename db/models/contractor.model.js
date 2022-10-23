@@ -1,8 +1,8 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const USER_TABLE = 'users';
+const CONTRACTOR_TABLE = 'contractor';
 
-const UserSchema = {
+const ContractorSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -13,24 +13,17 @@ const UserSchema = {
     allowNull: false,
     type: DataTypes.STRING,
   },
-  email: {
+  rfc: {
     allowNull: false,
     type: DataTypes.STRING,
-    unique: true,
   },
-  password: {
+  id_user: {
     allowNull: false,
-    type: DataTypes.STRING
+    type: DataTypes.INTEGER
   },
-  recoveryToken: {
-    field: 'recovery_token',
-    allowNull: true,
-    type: DataTypes.STRING
-  },
-  role: {
+  id_business: {
     allowNull: false,
-    type: DataTypes.STRING,
-    defaultValue: 'customer'
+    type: DataTypes.INTEGER
   },
   createdAt: {
     allowNull: false,
@@ -40,23 +33,16 @@ const UserSchema = {
   }
 }
 
-class User extends Model {
-  static associate(models) {
-    this.hasOne(models.Customer, {
-      as: 'customer',
-      foreignKey: 'userId'
-    });
-  }
-
+class Contractor extends Model {
   static config(sequelize) {
     return {
       sequelize,
-      tableName: USER_TABLE,
-      modelName: 'User',
+      tableName: CONTRACTOR_TABLE,
+      modelName: 'Contractor',
       timestamps: false
     }
   }
 }
 
 
-module.exports = { USER_TABLE, UserSchema, User }
+module.exports = { CONTRACTOR_TABLE, ContractorSchema, Contractor }
