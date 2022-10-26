@@ -78,12 +78,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER,
         unique: true,
-        references: {
-          model: USER_TABLE,
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
       }
     });
     await queryInterface.createTable(BUSINESS_TABLE, {
@@ -245,9 +239,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.DataTypes.INTEGER
       },
-      city: {
+      id_city: {
         allowNull: false,
-        type: Sequelize.DataTypes.STRING,
+        type: Sequelize.DataTypes.INTEGER,
       },
       code: {
         allowNull: false,
@@ -263,11 +257,11 @@ module.exports = {
       },
       infonavit: {
         allowNull: false,
-        type: Sequelize.DataTypes.INTEGER
+        type: Sequelize.DataTypes.FLOAT
       },
       fonacot: {
         allowNull: false,
-        type: Sequelize.DataTypes.INTEGER
+        type: Sequelize.DataTypes.FLOAT
       },
       id_contractor: {
         allowNull: false,
@@ -358,9 +352,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER
       },
-      city: {
+      id_city: {
         allowNull: false,
-        type: Sequelize.DataTypes.STRING,
+        type: Sequelize.DataTypes.INTEGER,
       },
       code: {
         allowNull: false,
@@ -376,27 +370,27 @@ module.exports = {
       },
       deposit: {
         allowNull: false,
-        type: Sequelize.DataTypes.INTEGER
+        type: Sequelize.DataTypes.FLOAT
       },
       salary: {
         allowNull: false,
-        type: Sequelize.DataTypes.INTEGER
+        type: Sequelize.DataTypes.FLOAT
       },
       infonavit: {
         allowNull: false,
-        type: Sequelize.DataTypes.INTEGER
+        type: Sequelize.DataTypes.FLOAT
       },
       fonacot: {
         allowNull: false,
-        type: Sequelize.DataTypes.INTEGER
+        type: Sequelize.DataTypes.FLOAT
       },
       overtime: {
         allowNull: false,
-        type: Sequelize.DataTypes.INTEGER
+        type: Sequelize.DataTypes.FLOAT
       },
       total_pay: {
         allowNull: false,
-        type: Sequelize.DataTypes.INTEGER
+        type: Sequelize.DataTypes.FLOAT
       },
       faults: {
         allowNull: false,

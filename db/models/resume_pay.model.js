@@ -38,7 +38,7 @@ class ResumePay extends Model {
     return {
       sequelize,
       tableName: RESUME_PAY_TABLE,
-      modelName: 'resume_pay',
+      modelName: 'ResumePay',
       timestamps: false
     }
   }

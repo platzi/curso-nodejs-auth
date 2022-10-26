@@ -9,9 +9,9 @@ const EmployesSchema = {
     primaryKey: true,
     type: DataTypes.INTEGER
   },
-  city: {
+  id_city: {
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.NUMBER,
   },
   code: {
     allowNull: false,
@@ -27,11 +27,11 @@ const EmployesSchema = {
   },
   infonavit: {
     allowNull: false,
-    type: DataTypes.NUMBER,
+    type: DataTypes.DECIMAL(65, 2),
   },
   fonacot: {
     allowNull: false,
-    type: DataTypes.NUMBER,
+    type: DataTypes.DECIMAL(65, 2),
   },
   id_contractor: {
     allowNull: false,
@@ -54,7 +54,7 @@ class Employes extends Model {
     return {
       sequelize,
       tableName: EMPLOYES_TABLE,
-      modelName: 'Employes',
+      modelName: 'Employe',
       timestamps: false
     }
   }

@@ -8,6 +8,9 @@ const contractorRouter = require('./contractor.router');
 const residentRouter = require('./resident.router');
 const citiesRouter = require('./cities.router');
 const JobsRouter = require('./jobs.router');
+const EmployeRouter = require('./employes.router');
+const ResumePayRouter = require('./resumePay.router');
+const ResumePayDataRouter = require('./resumePayData.router');
 
 
 
@@ -22,6 +25,9 @@ function routerApi(app) {
   router.use('/contractor', contractorRouter);
   router.use('/cities', citiesRouter);
   router.use('/jobs', JobsRouter);
+  router.use('/employes', EmployeRouter);
+  router.use('/resumePay', ResumePayRouter);
+  router.use('/resumePayData', ResumePayDataRouter);
 }
 
 module.exports = routerApi;

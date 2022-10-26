@@ -15,7 +15,7 @@ const JobsSchema = {
   },
   salary: {
     allowNull: false,
-    type: DataTypes.FLOAT(65, 2),
+    type: DataTypes.DECIMAL(65, 2),
   },
   id_business: {
     allowNull: false,

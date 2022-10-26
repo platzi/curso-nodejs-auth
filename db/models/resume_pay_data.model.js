@@ -13,7 +13,7 @@ const ResumePayDataSchema = {
     allowNull: false,
     type: DataTypes.INTEGER
   },
-  city: {
+  id_city: {
     allowNull: false,
     type: DataTypes.STRING,
   },
@@ -31,27 +31,27 @@ const ResumePayDataSchema = {
   },
   deposit: {
     allowNull: false,
-    type: DataTypes.NUMBER,
+    type: DataTypes.DECIMAL(65, 2),
   },
   salary: {
     allowNull: false,
-    type: DataTypes.NUMBER,
+    type: DataTypes.DECIMAL(65, 2),
   },
   infonavit: {
     allowNull: false,
-    type: DataTypes.NUMBER,
+    type: DataTypes.DECIMAL(65, 2),
   },
   fonacot: {
     allowNull: false,
-    type: DataTypes.NUMBER,
+    type: DataTypes.DECIMAL(65, 2),
   },
   overtime: {
     allowNull: false,
-    type: DataTypes.NUMBER,
+    type: DataTypes.DECIMAL(65, 2),
   },
   total_pay: {
     allowNull: false,
-    type: DataTypes.NUMBER,
+    type: DataTypes.DECIMAL(65, 2),
   },
   faults: {
     allowNull: false,
@@ -86,7 +86,7 @@ class ResumePayData extends Model {
     return {
       sequelize,
       tableName: RESUME_PAY_DATA_TABLE,
-      modelName: 'resume_pay_data',
+      modelName: 'ResumePayData',
       timestamps: false
     }
   }

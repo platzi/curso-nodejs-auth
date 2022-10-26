@@ -6,7 +6,6 @@ const location = Joi.string().max(100);
 const id_business = Joi.number().integer();
 const id_resident = Joi.number().integer();
 const id_user = Joi.number().integer();
-const create_at = Joi.date();
 
 const getConstructionSiteSchema = Joi.object({
   id: id.required(),
@@ -23,9 +22,7 @@ const createConstructionSiteSchema = Joi.object({
 const updateConstructionSiteSchema = Joi.object({
   name,
   location,
-  id_business,
   id_resident,
-  create_at,
 });
 
 module.exports = {
