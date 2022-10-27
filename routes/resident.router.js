@@ -1,6 +1,6 @@
 const express = require('express');
 
-const ResidentService = require('./../services/Resident.service');
+const ResidentService = require('./../services/resident.service');
 const validatorHandler = require('./../middlewares/validator.handler');
 const { createResidentSchema, getResidentSchema, updateResidentSchema } = require('./../schemas/resident.schema');
 
