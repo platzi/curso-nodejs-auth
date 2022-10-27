@@ -1,5 +1,5 @@
-const EmployeService = require('../services/Employes.service');
-const ResumePayDataService = require('../services/ResumePayData.service');
+const EmployeService = require('../services/employes.service');
+const ResumePayDataService = require('../services/resumePayData.service');
 const Employees = new EmployeService();
 const ResumePayData = new ResumePayDataService();
 
