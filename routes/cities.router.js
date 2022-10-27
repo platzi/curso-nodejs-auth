@@ -2,7 +2,7 @@ const express = require('express');
 
 const CitiesService = require('../services/cities.service');
 const validatorHandler = require('../middlewares/validator.handler');
-const { createCitiesSchema, getCitiesSchema, updateCitiesSchema } = require('../schemas/Cities.schema');
+const { createCitiesSchema, getCitiesSchema, updateCitiesSchema } = require('../schemas/cities.schema');
 
 const router = express.Router();
 const service = new CitiesService();

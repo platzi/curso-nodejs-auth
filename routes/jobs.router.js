@@ -2,7 +2,7 @@ const express = require('express');
 
 const JobsService = require('../services/jobs.service');
 const validatorHandler = require('../middlewares/validator.handler');
-const { createJobsSchema, getJobsSchema, updateJobsSchema } = require('../schemas/Jobs.schema');
+const { createJobsSchema, getJobsSchema, updateJobsSchema } = require('../schemas/jobs.schema');
 
 const router = express.Router();
 const service = new JobsService();

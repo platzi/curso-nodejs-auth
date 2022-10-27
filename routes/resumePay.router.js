@@ -2,7 +2,7 @@ const express = require('express');
 
 const ResumePayService = require('../services/ResumePay.service');
 const validatorHandler = require('../middlewares/validator.handler');
-const { createResumePaySchema, getResumePaySchema, updateResumePaySchema } = require('../schemas/ResumePay.schema');
+const { createResumePaySchema, getResumePaySchema, updateResumePaySchema } = require('../schemas/resumePay.schema');
 
 const router = express.Router();
 const service = new ResumePayService();

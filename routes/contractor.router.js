@@ -2,7 +2,7 @@ const express = require('express');
 
 const ContractorService = require('../services/contractor.service');
 const validatorHandler = require('../middlewares/validator.handler');
-const { createContractorSchema, getContractorSchema, updateContractorSchema } = require('../schemas/Contractor.schema');
+const { createContractorSchema, getContractorSchema, updateContractorSchema } = require('../schemas/contractor.schema');
 
 const router = express.Router();
 const service = new ContractorService();

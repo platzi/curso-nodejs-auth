@@ -2,7 +2,7 @@ const express = require('express');
 
 const ConstructionSiteService = require('./../services/constructionSite.service');
 const validatorHandler = require('./../middlewares/validator.handler');
-const { createConstructionSiteSchema, getConstructionSiteSchema, updateConstructionSiteSchema } = require('./../schemas/ConstructionSite.schema');
+const { createConstructionSiteSchema, getConstructionSiteSchema, updateConstructionSiteSchema } = require('./../schemas/constructionSite.schema');
 
 const router = express.Router();
 const service = new ConstructionSiteService();

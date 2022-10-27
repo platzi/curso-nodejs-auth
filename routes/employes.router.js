@@ -2,7 +2,7 @@ const express = require('express');
 
 const EmployeService = require('../services/Employes.service');
 const validatorHandler = require('../middlewares/validator.handler');
-const { createEmployeSchema, getEmployeSchema, updateEmployeSchema } = require('../schemas/Employes.schema');
+const { createEmployeSchema, getEmployeSchema, updateEmployeSchema } = require('../schemas/employes.schema');
 
 const router = express.Router();
 const service = new EmployeService();
