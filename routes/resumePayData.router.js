@@ -1,6 +1,6 @@
 const express = require('express');
 
-const ResumePayDataService = require('../services/ResumePayData.service');
+const ResumePayDataService = require('../services/resumePayData.service');
 const validatorHandler = require('../middlewares/validator.handler');
 const { createResumePayDataSchema, getResumePayDataSchema, updateResumePayDataSchema } = require('../schemas/resumePayData.schema');
 
