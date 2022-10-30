@@ -19,6 +19,18 @@ router.get('/list/:id_user',
   }
 );
 
+router.get('/get/:id_contractor',
+  async (req, res, next) => {
+    try {
+      const { id_contractor } = req.params;
+      const contractor = await service.findOne(id_contractor);
+      res.json(contractor);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 router.post('/register',
   validatorHandler(createContractorSchema, 'body'),
   async (req, res, next) => {

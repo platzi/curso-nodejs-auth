@@ -32,6 +32,10 @@ const UserSchema = {
     type: DataTypes.STRING,
     defaultValue: 'customer'
   },
+  id_contractor: {
+    allowNull: true,
+    type: DataTypes.NUMBER,
+  },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,

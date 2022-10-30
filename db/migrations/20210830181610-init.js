@@ -35,6 +35,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DataTypes.STRING
       },
+      id_contractor: {
+        allowNull: true,
+        type: Sequelize.DataTypes.INTEGER
+      },
       role: {
         allowNull: false,
         type: Sequelize.DataTypes.STRING,

@@ -23,6 +23,16 @@ class UserService {
     return rta;
   }
 
+  async findChecker(id_contractor) {
+    const rta = await models.User.findAll({
+      where: {
+        id_contractor: id_contractor,
+        role: 'checker'
+      }
+    });
+    return rta;
+  }
+
   async findByEmail(email) {
     const rta = await models.User.findOne({
       where: { email }

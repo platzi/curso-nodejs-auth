@@ -30,6 +30,18 @@ router.post('/recovery',
   }
 );
 
+router.post('/newChecador',
+  async (req, res, next) => {
+    try {
+      const { email, password } = req.body;
+      const rta = await service.sendNewChecador(email, password);
+      res.json(rta);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 router.post('/change-password',
   async (req, res, next) => {
     try {

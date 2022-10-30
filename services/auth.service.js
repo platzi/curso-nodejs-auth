@@ -53,6 +53,26 @@ class AuthService {
     return rta;
   }
 
+  async sendNewChecador(email, password) {
+    const user = await service.findByEmail(email);
+    if (!user) {
+      throw boom.unauthorized();
+    }
+    const link = `http://localhost:3000/iniciar-sesión`;
+    const mail = {
+      from: config.smtpEmail,
+      to: `${user.email}`,
+      subject: "Usa estas credenciales para iniciar sesión",
+      html: `<b>Ingresa a este link => ${link}</b>
+      <p>Usando estas credenciales</p>
+      <p>Email : ${email}</p>
+      <p>Password : ${password}</p>
+      `,
+    }
+    const rta = await this.sendMail(mail);
+    return rta;
+  }
+
   async changePassword(token, newPassword) {
     try {
       const payload = jwt.verify(token, config.jwtSecret);

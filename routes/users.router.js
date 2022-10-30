@@ -16,6 +16,16 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/checkers/:id_contractor', async (req, res, next) => {
+  try {
+    const { id_contractor } = req.params;
+    const checkers = await service.findChecker(id_contractor);
+    res.json(checkers);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/:id',
   validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {

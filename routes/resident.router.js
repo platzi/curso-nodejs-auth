@@ -7,11 +7,11 @@ const { createResidentSchema, getResidentSchema, updateResidentSchema } = requir
 const router = express.Router();
 const service = new ResidentService();
 
-router.get('/list/:id_user',
+router.get('/list/:id_business',
   async (req, res, next) => {
     try {
-      const { id_user } = req.params;
-      const Resident = await service.find(id_user);
+      const { id_business } = req.params;
+      const Resident = await service.find(id_business);
       res.json(Resident);
     } catch (error) {
       next(error);
@@ -47,12 +47,12 @@ router.patch('/update/:id_resident',
   }
 );
 
-router.post('/delete/:id_resident',
+router.post('/delete/:id',
   validatorHandler(getResidentSchema, 'params'),
   async (req, res, next) => {
     try {
-      const { id_resident } = req.params;
-      const newResident = await service.delete(id_resident);
+      const { id } = req.params;
+      const newResident = await service.delete(id);
       res.status(201).json(newResident);
     } catch (error) {
       next(error);

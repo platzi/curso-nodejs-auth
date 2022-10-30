@@ -11,15 +11,15 @@ class ResidentService {
     return newResident;
   }
 
-  async find(id_user) {
+  async find(id_business) {
     const response = await models.Resident.findAll({
-      where: { id_user: id_user }
+      where: { id_business: id_business }
     });
     return response;
   }
 
-  async findOne(id_resident) {
-    const resident = await models.Resident.findByPk(id_resident);
+  async findOne(id) {
+    const resident = await models.Resident.findByPk(id);
     if (!resident) {
       throw boom.notFound('resident not found');
     }
@@ -32,13 +32,13 @@ class ResidentService {
     return res;
   }
 
-  async delete(id_resident) {
-    const resident = await this.findOne(id_resident);
+  async delete(id) {
+    const resident = await this.findOne(id);
     await resident.destroy();
-    return { id_resident };
+    return { id };
   }
 
- 
+
 }
 
 module.exports = ResidentService;
