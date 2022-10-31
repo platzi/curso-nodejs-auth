@@ -10,6 +10,7 @@ const { EMPLOYES_TABLE } = require('./../models/employes.model');
 const { JOBS_TABLE } = require('./../models/jobs.model');
 const { RESUME_PAY_TABLE } = require('./../models/resume_pay.model');
 const { RESUME_PAY_DATA_TABLE } = require('./../models/resume_pay_data.model');
+const { ATTENDANCE_TABLE } = require('./../models/attendance.model');
 const { CITIES_TABLE } = require('./../models/cities.model');
 
 
@@ -424,10 +425,83 @@ module.exports = {
       }
     });
 
+    await queryInterface.createTable(ATTENDANCE_TABLE, {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      id_resume_pay: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      id_city: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER,
+      },
+      code: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER,
+      },
+      name: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
+      id_job: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      monday: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      tuesday: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      wednesday: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      thursday: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      friday: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      saturday: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      sunday: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      id_construction_site: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER,
+      },
+      id_user: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DataTypes.DATE,
+        field: 'create_at',
+        defaultValue: Sequelize.NOW
+      }
+    });
+
+
 
   },
 
   down: async (queryInterface) => {
+    await queryInterface.dropTable(ATTENDANCE_TABLE);
     await queryInterface.dropTable(RESUME_PAY_DATA_TABLE);
     await queryInterface.dropTable(RESUME_PAY_TABLE);
     await queryInterface.dropTable(JOBS_TABLE);

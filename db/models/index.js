@@ -8,6 +8,7 @@ const { Employes, EmployesSchema } = require('./employes.model');
 const { Jobs, JobsSchema } = require('./jobs.model');
 const { ResumePay, ResumePaySchema } = require('./resume_pay.model');
 const { ResumePayData, ResumePayDataSchema } = require('./resume_pay_data.model');
+const { Attendance, AttendanceSchema } = require('./attendance.model');
 const { Cities, CitiesSchema } = require('./cities.model');
 
 function setupModels(sequelize) {
@@ -21,6 +22,7 @@ function setupModels(sequelize) {
   Jobs.init(JobsSchema, Jobs.config(sequelize));
   ResumePay.init(ResumePaySchema, ResumePay.config(sequelize));
   ResumePayData.init(ResumePayDataSchema, ResumePayData.config(sequelize));
+  Attendance.init(AttendanceSchema, Attendance.config(sequelize));
   Cities.init(CitiesSchema, Cities.config(sequelize));
 
   User.associate(sequelize.models);
