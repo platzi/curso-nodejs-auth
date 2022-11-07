@@ -26,8 +26,8 @@ class ResidentService {
     return resident;
   }
 
-  async update(id_resident, changes) {
-    const resident = await this.findOne(id_resident);
+  async update(id, changes) {
+    const resident = await this.findOne(id);
     const res = await resident.update(changes);
     return res;
   }

@@ -32,14 +32,14 @@ router.post('/register',
   }
 );
 
-router.patch('/update/:id_resident',
+router.patch('/update/:id',
   validatorHandler(getResidentSchema, 'params'),
   validatorHandler(updateResidentSchema, 'body'),
   async (req, res, next) => {
     try {
-      const { id_resident } = req.params;
+      const { id } = req.params;
       const body = req.body;
-      const Resident = await service.update(id_resident, body);
+      const Resident = await service.update(id, body);
       res.json(Resident);
     } catch (error) {
       next(error);
