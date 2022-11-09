@@ -2,10 +2,16 @@
 
 const { USER_TABLE } = require('./../models/user.model');
 const { CUSTOMER_TABLE } = require('./../models/customer.model');
-const { CATEGORY_TABLE } = require('./../models/category.model');
-const { PRODUCT_TABLE } = require('./../models/product.model');
-const { ORDER_TABLE } = require('./../models/order.model');
-const { ORDER_PRODUCT_TABLE } = require('./../models/order-product.model');
+const { BUSINESS_TABLE } = require('./../models/business.model');
+const { CONSTRUCTION_SITE_TABLE } = require('./../models/construction_site.model');
+const { RESIDENT_TABLE } = require('./../models/resident.model');
+const { CONTRACTOR_TABLE } = require('./../models/contractor.model');
+const { EMPLOYES_TABLE } = require('./../models/employes.model');
+const { JOBS_TABLE } = require('./../models/jobs.model');
+const { RESUME_PAY_TABLE } = require('./../models/resume_pay.model');
+const { RESUME_PAY_DATA_TABLE } = require('./../models/resume_pay_data.model');
+const { ATTENDANCE_TABLE } = require('./../models/attendance.model');
+const { CITIES_TABLE } = require('./../models/cities.model');
 
 
 module.exports = {
@@ -17,6 +23,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.DataTypes.INTEGER
       },
+      name: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
       email: {
         allowNull: false,
         type: Sequelize.DataTypes.STRING,
@@ -25,6 +35,10 @@ module.exports = {
       password: {
         allowNull: false,
         type: Sequelize.DataTypes.STRING
+      },
+      id_contractor: {
+        allowNull: true,
+        type: Sequelize.DataTypes.INTEGER
       },
       role: {
         allowNull: false,
@@ -69,15 +83,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER,
         unique: true,
-        references: {
-          model: USER_TABLE,
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
       }
     });
-    await queryInterface.createTable(CATEGORY_TABLE, {
+    await queryInterface.createTable(BUSINESS_TABLE, {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -85,22 +93,31 @@ module.exports = {
         type: Sequelize.DataTypes.INTEGER
       },
       name: {
-        type: Sequelize.DataTypes.STRING,
-        unique: true,
         allowNull: false,
+        type: Sequelize.DataTypes.STRING,
       },
-      image: {
-        type: Sequelize.DataTypes.STRING,
+      reg_patronal: {
         allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+        defaultValue: 'XXXXXXXX-XXXX'
+      },
+      rfc: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+        defaultValue: 'XXXXXXXXXXXXXXXXXX'
+      },
+      id_user: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DataTypes.DATE,
-        field: 'created_at',
-        defaultValue: Sequelize.NOW,
-      },
+        field: 'create_at',
+        defaultValue: Sequelize.NOW
+      }
     });
-    await queryInterface.createTable(PRODUCT_TABLE, {
+    await queryInterface.createTable(CITIES_TABLE, {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -108,113 +125,391 @@ module.exports = {
         type: Sequelize.DataTypes.INTEGER
       },
       name: {
+        allowNull: false,
         type: Sequelize.DataTypes.STRING,
-        allowNull: false,
       },
-      image: {
-        type: Sequelize.DataTypes.STRING,
+      id_business: {
         allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
       },
-      description: {
-        type: Sequelize.DataTypes.TEXT,
+      id_user: {
         allowNull: false,
-      },
-      price: {
-        type: Sequelize.DataTypes.INTEGER,
-        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DataTypes.DATE,
-        field: 'created_at',
-        defaultValue: Sequelize.NOW,
-      },
-      categoryId: {
-        field: 'category_id',
-        allowNull: false,
-        type: Sequelize.DataTypes.INTEGER,
-        references: {
-          model: CATEGORY_TABLE,
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        field: 'create_at',
+        defaultValue: Sequelize.NOW
       }
     });
-    await queryInterface.createTable(ORDER_TABLE, {
+    await queryInterface.createTable(CONSTRUCTION_SITE_TABLE, {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.DataTypes.INTEGER
       },
-      customerId: {
-        field: 'customer_id',
+      name: {
         allowNull: false,
-        type: Sequelize.DataTypes.INTEGER,
-        references: {
-          model: CUSTOMER_TABLE,
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        type: Sequelize.DataTypes.STRING,
+      },
+      location: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+        defaultValue: 'XXXXXXXX-XXXX'
+      },
+      id_business: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      id_resident: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      id_user: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DataTypes.DATE,
-        field: 'created_at',
-        defaultValue: Sequelize.NOW,
-      },
+        field: 'create_at',
+        defaultValue: Sequelize.NOW
+      }
     });
-    await queryInterface.createTable(ORDER_PRODUCT_TABLE, {
+
+    await queryInterface.createTable(RESIDENT_TABLE, {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.DataTypes.INTEGER
       },
-      createdAt: {
+      name: {
         allowNull: false,
-        type: Sequelize.DataTypes.DATE,
-        field: 'created_at',
-        defaultValue: Sequelize.NOW,
+        type: Sequelize.DataTypes.STRING,
       },
-      amount: {
+      id_business: {
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER
       },
-      orderId: {
-        field: 'order_id',
+      id_user: {
         allowNull: false,
-        type: Sequelize.DataTypes.INTEGER,
-        references: {
-          model: ORDER_TABLE,
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        type: Sequelize.DataTypes.INTEGER
       },
-      productId: {
-        field: 'product_id',
+      createdAt: {
         allowNull: false,
-        type: Sequelize.DataTypes.INTEGER,
-        references: {
-          model: PRODUCT_TABLE,
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        type: Sequelize.DataTypes.DATE,
+        field: 'create_at',
+        defaultValue: Sequelize.NOW
       }
     });
+
+    await queryInterface.createTable(CONTRACTOR_TABLE, {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      name: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
+      rfc: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
+      id_user: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      id_business: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DataTypes.DATE,
+        field: 'create_at',
+        defaultValue: Sequelize.NOW
+      }
+    });
+
+    await queryInterface.createTable(EMPLOYES_TABLE, {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      id_city: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER,
+      },
+      code: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER,
+      },
+      name: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
+      id_job: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      infonavit: {
+        allowNull: false,
+        type: Sequelize.DataTypes.FLOAT
+      },
+      fonacot: {
+        allowNull: false,
+        type: Sequelize.DataTypes.FLOAT
+      },
+      id_contractor: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      id_user: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DataTypes.DATE,
+        field: 'create_at',
+        defaultValue: Sequelize.NOW
+      }
+    });
+
+    await queryInterface.createTable(JOBS_TABLE, {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      name: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
+      salary: {
+        allowNull: false,
+        type: Sequelize.DataTypes.FLOAT,
+      },
+      id_business: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      id_user: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DataTypes.DATE,
+        field: 'create_at',
+        defaultValue: Sequelize.NOW
+      }
+    });
+
+    await queryInterface.createTable(RESUME_PAY_TABLE, {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      period: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
+      name: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
+      id_contractor: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      id_user: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DataTypes.DATE,
+        field: 'create_at',
+        defaultValue: Sequelize.NOW
+      }
+    });
+
+    await queryInterface.createTable(RESUME_PAY_DATA_TABLE, {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      id_resume_pay: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      id_city: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER,
+      },
+      code: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER,
+      },
+      name: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
+      id_job: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      deposit: {
+        allowNull: false,
+        type: Sequelize.DataTypes.FLOAT
+      },
+      salary: {
+        allowNull: false,
+        type: Sequelize.DataTypes.FLOAT
+      },
+      infonavit: {
+        allowNull: false,
+        type: Sequelize.DataTypes.FLOAT
+      },
+      fonacot: {
+        allowNull: false,
+        type: Sequelize.DataTypes.FLOAT
+      },
+      overtime: {
+        allowNull: false,
+        type: Sequelize.DataTypes.FLOAT
+      },
+      total_pay: {
+        allowNull: false,
+        type: Sequelize.DataTypes.FLOAT
+      },
+      faults: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      comment: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
+      id_construction_site: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER,
+      },
+      id_resident: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER,
+      },
+      id_user: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DataTypes.DATE,
+        field: 'create_at',
+        defaultValue: Sequelize.NOW
+      }
+    });
+
+    await queryInterface.createTable(ATTENDANCE_TABLE, {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      id_resume_pay: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      id_city: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER,
+      },
+      code: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER,
+      },
+      name: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
+      id_job: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      monday: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      tuesday: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      wednesday: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      thursday: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      friday: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      saturday: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      sunday: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      id_construction_site: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER,
+      },
+      id_user: {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DataTypes.DATE,
+        field: 'create_at',
+        defaultValue: Sequelize.NOW
+      }
+    });
+
+
 
   },
 
   down: async (queryInterface) => {
-    await queryInterface.dropTable(ORDER_PRODUCT_TABLE);
-    await queryInterface.dropTable(ORDER_TABLE);
-    await queryInterface.dropTable(PRODUCT_TABLE);
-    await queryInterface.dropTable(CATEGORY_TABLE);
-    await queryInterface.dropTable(CUSTOMER_TABLE);
+    await queryInterface.dropTable(ATTENDANCE_TABLE);
+    await queryInterface.dropTable(RESUME_PAY_DATA_TABLE);
+    await queryInterface.dropTable(RESUME_PAY_TABLE);
+    await queryInterface.dropTable(JOBS_TABLE);
+    await queryInterface.dropTable(EMPLOYES_TABLE);
+    await queryInterface.dropTable(CONTRACTOR_TABLE);
+    await queryInterface.dropTable(CONSTRUCTION_SITE_TABLE);
+    await queryInterface.dropTable(RESIDENT_TABLE);
     await queryInterface.dropTable(USER_TABLE);
+    await queryInterface.dropTable(CITIES_TABLE);
   }
 };

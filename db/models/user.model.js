@@ -9,6 +9,10 @@ const UserSchema = {
     primaryKey: true,
     type: DataTypes.INTEGER
   },
+  name: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
   email: {
     allowNull: false,
     type: DataTypes.STRING,
@@ -18,10 +22,19 @@ const UserSchema = {
     allowNull: false,
     type: DataTypes.STRING
   },
+  recoveryToken: {
+    field: 'recovery_token',
+    allowNull: true,
+    type: DataTypes.STRING
+  },
   role: {
     allowNull: false,
     type: DataTypes.STRING,
     defaultValue: 'customer'
+  },
+  id_contractor: {
+    allowNull: true,
+    type: DataTypes.NUMBER,
   },
   createdAt: {
     allowNull: false,

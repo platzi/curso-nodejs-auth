@@ -16,26 +16,36 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/checkers/:id_contractor', async (req, res, next) => {
+  try {
+    const { id_contractor } = req.params;
+    const checkers = await service.findChecker(id_contractor);
+    res.json(checkers);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/:id',
   validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const category = await service.findOne(id);
-      res.json(category);
+      const user = await service.findOne(id);
+      res.json(user);
     } catch (error) {
       next(error);
     }
   }
 );
 
-router.post('/',
+router.post('/register',
   validatorHandler(createUserSchema, 'body'),
   async (req, res, next) => {
     try {
       const body = req.body;
-      const newCategory = await service.create(body);
-      res.status(201).json(newCategory);
+      const newUser = await service.create(body);
+      res.status(201).json(newUser);
     } catch (error) {
       next(error);
     }
@@ -49,8 +59,8 @@ router.patch('/:id',
     try {
       const { id } = req.params;
       const body = req.body;
-      const category = await service.update(id, body);
-      res.json(category);
+      const user = await service.update(id, body);
+      res.json(user);
     } catch (error) {
       next(error);
     }

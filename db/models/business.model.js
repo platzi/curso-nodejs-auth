@@ -1,8 +1,8 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const CATEGORY_TABLE = 'categories';
+const BUSINESS_TABLE = 'business';
 
-const CategorySchema = {
+const BusinessSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -10,40 +10,40 @@ const CategorySchema = {
     type: DataTypes.INTEGER
   },
   name: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  reg_patronal: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  rfc: {
+    allowNull: false,
     type: DataTypes.STRING,
     unique: true,
-    allowNull: false,
   },
-  image: {
-    type: DataTypes.STRING,
+  id_user: {
     allowNull: false,
+    type: DataTypes.INTEGER
   },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
-    field: 'created_at',
-    defaultValue: Sequelize.NOW,
-  },
+    field: 'create_at',
+    defaultValue: Sequelize.NOW
+  }
 }
 
-
-class Category extends Model {
-
-  static associate(models) {
-    this.hasMany(models.Product, {
-      as: 'products',
-      foreignKey: 'categoryId'
-    });
-  }
-
+class Business extends Model {
   static config(sequelize) {
     return {
       sequelize,
-      tableName: CATEGORY_TABLE,
-      modelName: 'Category',
+      tableName: BUSINESS_TABLE,
+      modelName: 'Business',
       timestamps: false
     }
   }
 }
 
-module.exports = { Category, CategorySchema, CATEGORY_TABLE };
+
+module.exports = { BUSINESS_TABLE, BusinessSchema, Business }
