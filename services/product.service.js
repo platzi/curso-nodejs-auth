@@ -1,4 +1,4 @@
-const faker = require('faker');
+const { faker } = require('@faker-js/faker');
 const { Op } = require('sequelize');
 const boom = require('@hapi/boom');
 
